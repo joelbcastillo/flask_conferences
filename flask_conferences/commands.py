@@ -40,10 +40,14 @@ def test(coverage, test_name):
         COV.save()
         print("Coverage Summary")
         COV.report()
-        covdir = os.path.join(PROJECT_ROOT, "tmp/coverage")
-        COV.html_report(directory=covdir)
-        COV.xml_report(directory=covdir)
-        print("HTML Version: file://%s/index.html" % covdir)
+        html_covdir = os.path.join(PROJECT_ROOT, "tmp/coverage/html/")
+        xml_covdir = os.path.join(PROJECT_ROOT, "tmp/coverage/xml/")
+        COV.html_report(directory=html_covdir)
+        COV.xml_report(
+            outfile=os.path.join(xml_covdir, "flask_conferences_coverage.xml")
+        )
+        print("HTML Version: file://%s/index.html" % html_covdir)
+        print("HTML Version: file://%s/flask_conferences_coverage.xml" % xml_covdir)
         COV.erase()
 
     exit(rv)

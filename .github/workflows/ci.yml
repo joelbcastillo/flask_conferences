@@ -45,4 +45,9 @@ jobs:
       run: flask lint --check
 
     - name: Run Pytest
-      run: flask test
+      run: flask test --coverage
+
+    - name: Upload Coverage Results
+      uses: codecov/codecov-action@v1
+      with:
+        file: tmp/coverage/flask_conferences_coverage.xml
