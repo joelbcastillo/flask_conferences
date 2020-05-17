@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 """Click commands."""
 import os
+import sys
 from glob import glob
 from subprocess import call
 
@@ -10,13 +10,45 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.join(HERE, os.pardir)
 TEST_PATH = os.path.join(PROJECT_ROOT, "tests")
 
+if os.environ.get("FLASK_COVERAGE"):
+    import coverage
+
+    COV = coverage.coverage(branch=True, include="flask_conferences/*")
+    COV.start()
+
 
 @click.command()
-def test():
+@click.option(
+    "--coverage/--no-coverage",
+    default=False,
+    is_flag=True,
+    help="Run tests under code coverage.",
+)
+@click.argument("test_name", nargs=-1)
+def test(coverage, test_name):
     """Run the tests."""
     import pytest
 
+    if coverage and not os.environ.get("FLASK_COVERAGE"):
+        os.environ["FLASK_COVERAGE"] = "1"
+        sys.exit(call(sys.argv))
+
     rv = pytest.main([TEST_PATH, "--verbose"])
+
+    if COV:
+        COV.stop
+        COV.save()
+        print("Coverage Summary")
+        COV.report()
+        html_covdir = os.path.join(PROJECT_ROOT, "tmp/coverage/html/")
+        xml_covdir = os.path.join(PROJECT_ROOT, "tmp/coverage/xml/")
+        COV.html_report(directory=html_covdir)
+        COV.xml_report(
+            outfile=os.path.join(xml_covdir, "flask_conferences_coverage.xml")
+        )
+        print("HTML Version: file://%s/index.html" % html_covdir)
+        COV.erase()
+
     exit(rv)
 
 
