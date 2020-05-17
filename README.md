@@ -1,8 +1,11 @@
-# Flask Conferences
+![](https://github.com/joelbcastillo/flask_conferences/Continuous%20Integration/badge.svg)
+Flask Conferences
+=================
 
 A Flask App to manage Twilio Conference Calls.
 
-## Docker Quickstart
+Docker Quickstart
+-----------------
 
 This app can be run completely using `Docker` and `docker-compose`. **Using Docker is recommended, as it guarantees the application is run using compatible versions of Python and Node**.
 
@@ -63,7 +66,8 @@ flask db migrate
 flask db upgrade
 ```
 
-## Deployment
+Deployment
+----------
 
 When using Docker, reasonable production defaults are set in `docker-compose.yml`
 
@@ -88,7 +92,8 @@ npm run build   # build assets with webpack
 flask run       # start the flask server
 ```
 
-## Shell
+Shell
+-----
 
 To open the interactive shell, run
 
@@ -99,7 +104,8 @@ flask shell # If running locally without Docker
 
 By default, you will have access to the flask `app`.
 
-## Running Tests/Linter
+Running Tests/Linter
+--------------------
 
 To run all tests, run
 
@@ -117,7 +123,8 @@ flask lint # If running locally without Docker
 
 The `lint` command will attempt to fix any linting/style errors in the code. If you only want to know if the code will pass CI and do not wish for the linter to make changes, add the `--check` argument.
 
-## Migrations
+Migrations
+----------
 
 Whenever a database migration needs to be made. Run the following commands
 
@@ -147,7 +154,8 @@ git commit -m "Add migrations"
 
 Make sure folder `migrations/versions` is not empty.
 
-## Asset Management
+Asset Management
+----------------
 
 Files placed inside the `assets` directory and its subdirectories
 (excluding `js` and `css`) will be copied by webpack's
@@ -170,7 +178,8 @@ in ``.env``:
 SEND_FILE_MAX_AGE_DEFAULT=31556926  # one year
 ```
 
-## Heroku
+Heroku
+------
 
 Before deploying to Heroku you should be familiar with the basic concepts of [Git](https://git-scm.com/) and [Heroku](https://heroku.com/).
 
