@@ -1,4 +1,4 @@
-![](https://github.com/joelbcastillo/flask_conferences/workflows/CI/badge.svg)
+![https://github.com/joelbcastillo/flask_conferences/actions?query=workflow%3ACI](https://github.com/joelbcastillo/flask_conferences/workflows/CI/badge.svg)
 
 Flask Conferences
 =================
