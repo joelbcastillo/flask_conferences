@@ -1,4 +1,5 @@
-![](https://github.com/joelbcastillo/flask_conferences/Continuous%20Integration/badge.svg)
+![](https://github.com/joelbcastillo/flask_conferences/workflows/CI/badge.svg)
+
 Flask Conferences
 =================
 
