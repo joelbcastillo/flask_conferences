@@ -47,7 +47,6 @@ def test(coverage, test_name):
             outfile=os.path.join(xml_covdir, "flask_conferences_coverage.xml")
         )
         print("HTML Version: file://%s/index.html" % html_covdir)
-        print("HTML Version: file://%s/flask_conferences_coverage.xml" % xml_covdir)
         COV.erase()
 
     exit(rv)
