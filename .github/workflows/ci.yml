@@ -22,10 +22,11 @@ jobs:
         python-version: 3.8
 
     - name: Install Python Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install pipenv
-        pipenv install --dev --system --deploy
+      uses: abatilo/actions-poetry@v1.7.0
+      with:
+        python_version: 3.8.0
+        poetry_version: 1.0.5
+        args: install
 
     - name: Use Node.JS 12
       uses: actions/setup-node@v1
@@ -42,12 +43,18 @@ jobs:
       run: npm run lint
 
     - name: Lint Python
-      run: flask lint --check
+      uses: abatilo/actions-poetry@v1.7.0
+      with:
+        python_version: 3.8.0
+        poetry_version: 1.0.5
+        args: run flask lint
 
     - name: Run Pytest
-      run: flask test --coverage
+      uses: abatilo/actions-poetry@v1.7.0
+      with:
+        python_version: 3.8.0
+        poetry_version: 1.0.5
+        args: run flask test --coverage
 
     - name: Upload Coverage Results
       uses: codecov/codecov-action@v1
-      # with:
-      #   file: tmp/coverage/flask_conferences_coverage.xml
